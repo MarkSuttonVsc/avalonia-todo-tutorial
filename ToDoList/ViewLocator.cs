@@ -7,8 +7,9 @@ namespace ToDoList
 {
     public class ViewLocator : IDataTemplate
     {
-        public IControl Build(object data)
+        public IControl?  Build(object? data)
         {
+            if (data==null) return null;
             var name = data.GetType().FullName!.Replace("ViewModel", "View");
             var type = Type.GetType(name);
 
@@ -22,7 +23,7 @@ namespace ToDoList
             }
         }
 
-        public bool Match(object data)
+        public bool Match(object? data)
         {
             return data is ViewModelBase;
         }
